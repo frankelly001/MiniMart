@@ -1,39 +1,50 @@
 import {SCREEN_HORIZONTAL_SPACE, wp} from '@/resources/config';
+import {generateTypography} from '@/resources/fonts';
 import {StyleSheet} from 'react-native';
 
 export const appHeaderStyle = () =>
   StyleSheet.create({
-    container: {
-      width: '100%',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      backgroundColor: 'transparent',
-      alignItems: 'center',
-      paddingLeft: SCREEN_HORIZONTAL_SPACE,
-      paddingRight: SCREEN_HORIZONTAL_SPACE + 4,
-      borderTopWidth: 0,
-      borderBottomWidth: 0,
-      overflow: 'hidden',
-      height: wp(40),
+    container1: {
+      borderBottomWidth: 1,
+      borderColor: '#E2E8F0',
+      padding: SCREEN_HORIZONTAL_SPACE,
     },
     left: {
       flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      flexDirection: 'row',
-      height: '100%',
+      alignItems: 'flex-start',
     },
     middle: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      flex: 2,
-      height: '100%',
+      flex: 3,
     },
     right: {
       flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+    },
+    container2: {
       alignItems: 'center',
-      height: '100%',
+      justifyContent: 'center',
+    },
+    inputContainer: {
+      height: wp(36),
+      borderRadius: wp(5),
+      overflow: 'hidden',
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingHorizontal: wp(8),
+      marginTop: wp(8),
+      gap: wp(8),
+      borderWidth: 1,
+      borderColor: '#E2E8F0',
+    },
+    input: {
+      flex: 1,
+      ...generateTypography({size: 14, weight: 'Regular'}),
+      color: 'black',
+    },
+    container3: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      padding: wp(8),
+      gap: wp(8),
     },
   });

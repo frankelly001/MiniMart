@@ -4,14 +4,16 @@ import {AppScreenHeader} from '@/components/headers';
 import products from '@/mocks/products';
 import {routesNames} from '@/navigation/routes';
 import {GeneralScreenProps} from '@/navigation/types';
-import {SCREEN_HORIZONTAL_SPACE, wp} from '@/resources/config';
+import {wp} from '@/resources/config';
 import {formatListData} from '@/utils/helpers';
 import React, {FunctionComponent} from 'react';
 import {FlatList} from 'react-native';
+import {homeScreenStyles} from './styles';
 
 const HomeScreen: FunctionComponent<GeneralScreenProps<'HOME'>> = ({
   navigation,
 }) => {
+  const styles = homeScreenStyles();
   return (
     <AppScreen
       isScrollable={false}
@@ -19,11 +21,7 @@ const HomeScreen: FunctionComponent<GeneralScreenProps<'HOME'>> = ({
       ScreenHeader={<AppScreenHeader title="Technology" showInput />}>
       <FlatList
         data={formatListData(products, 2)}
-        style={{
-          backgroundColor: '#FBFBFB',
-          paddingHorizontal: SCREEN_HORIZONTAL_SPACE,
-          paddingVertical: wp(8),
-        }}
+        style={styles.list}
         contentContainerStyle={{gap: wp(16)}}
         columnWrapperStyle={{gap: wp(8)}}
         numColumns={2}

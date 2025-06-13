@@ -17,6 +17,7 @@ module.exports = {
           '@/types': './src/types',
           '@/utils': './src/utils',
           '@/mocks': './src/mocks',
+          '@/providers': './src/providers',
         },
       },
     ],

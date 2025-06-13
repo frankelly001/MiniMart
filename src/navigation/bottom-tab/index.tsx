@@ -1,17 +1,20 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {CartIcon, HeartIcon, HomeIcon, PersonIcon} from '@/assets/svg';
 import AppTabButton from '@/components/buttons/app-bottom-tab';
-import {wp} from '@/resources/config';
+import {AppText} from '@/components/common';
+import {CartScreen, HomeScreen} from '@/screens/bottom-tabs';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useContext} from 'react';
 import {View} from 'react-native';
 import {routesNames} from '../routes';
+import {bottomTabStyles} from './styles';
 import {BottomTabParamList} from './type';
-import {CartScreen, HomeScreen} from '@/screens/bottom-tabs';
+import {StoreContext} from '@/providers/store/context';
 
 const {Navigator, Screen} = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTab: FunctionComponent = () => {
+  const styles = bottomTabStyles();
   return (
     <Navigator
       screenOptions={{
@@ -19,11 +22,7 @@ const BottomTab: FunctionComponent = () => {
         headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          // paddingHorizontal: wp(10),
-          height: wp(82),
-          paddingTop: wp(14),
-        },
+        tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: '#60B5FF',
         tabBarInactiveTintColor: '#49454F',
       }}>
@@ -50,7 +49,10 @@ const BottomTab: FunctionComponent = () => {
             <AppTabButton
               label="Cart"
               renderIcon={({isFocused}) => (
-                <CartIcon stroke={isFocused ? 'white' : 'black'} />
+                <View>
+                  <CartIcon stroke={isFocused ? 'white' : 'black'} />
+                  <CartTotalItem />
+                </View>
               )}
               {...props}
             />
@@ -92,3 +94,23 @@ const BottomTab: FunctionComponent = () => {
 };
 
 export default BottomTab;
+
+const CartTotalItem = () => {
+  const styles = bottomTabStyles();
+  const {cart} = useContext(StoreContext);
+  const totalItems = cart.reduce((count, item) => count + item.quantity, 0);
+  if (!totalItems) {
+    return <></>;
+  }
+  return (
+    <View style={styles.indicator}>
+      <AppText
+        text={totalItems}
+        color="#ffffff"
+        weight="Bold"
+        size={10.22}
+        lineHeight={17.04}
+      />
+    </View>
+  );
+};

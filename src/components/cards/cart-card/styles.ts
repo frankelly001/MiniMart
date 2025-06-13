@@ -21,9 +21,15 @@ export const productCardStyles = () =>
       width: '100%',
       height: '100%',
     },
+    detailContainer: {gap: wp(5), flex: 1},
+    actionContainer: {flexDirection: 'row', alignItems: 'center', gap: wp(32)},
     actionBtn: {
-      position: 'absolute',
-      right: -5,
-      bottom: -5,
+      width: wp(36),
+      height: wp(36),
+      borderRadius: wp(18),
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#ffffff',
     },
+    plusMinusContainer: {flex: 1, flexDirection: 'row', alignItems: 'center'},
   });

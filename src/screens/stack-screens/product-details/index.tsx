@@ -5,59 +5,49 @@ import {AppScreen} from '@/components/containers';
 import {AppScreenHeader} from '@/components/headers';
 import products from '@/mocks/products';
 import {GeneralScreenProps} from '@/navigation/types';
-import {SCREEN_HORIZONTAL_SPACE, SCREEN_WIDTH, wp} from '@/resources/config';
-import React, {FunctionComponent} from 'react';
+import {SCREEN_HORIZONTAL_SPACE, wp} from '@/resources/config';
+import React, {FunctionComponent, useContext} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
+import {productDetailsScreenStyles} from './styles';
+import {showToast} from '@/components/common/app-toast';
+import {StoreContext} from '@/providers/store/context';
 
 const ProductDetailsScreen: FunctionComponent<
   GeneralScreenProps<'PRODUCT_DETAILS'>
 > = ({route}) => {
   const productId = route.params?.productId;
   const product = products.find(el => el.id === productId);
+  const styles = productDetailsScreenStyles();
+  const {incrementProductQuantity} = useContext(StoreContext);
+
   return (
     <AppScreen
       horizontalPadding={SCREEN_HORIZONTAL_SPACE}
       disableBottomSafeArea={false}
-      style={{
-        backgroundColor: '#FBFBFB',
-        paddingVertical: wp(8),
-      }}
+      style={styles.container}
       ScreenHeader={<AppScreenHeader title="Go back" />}
       ScreenFooter={
-        <View
-          style={{
-            paddingVertical: wp(16),
-
-            paddingHorizontal: SCREEN_HORIZONTAL_SPACE,
-            backgroundColor: '#ffffff',
-          }}>
-          <AppButton text="Add to cart" />
+        <View style={styles.footer}>
+          <AppButton
+            text="Add to cart"
+            onPress={() => {
+              if (product) {
+                incrementProductQuantity({
+                  name: product?.name,
+                  productId: product?.id,
+                  unitPrice: product?.price,
+                  image: product?.image,
+                });
+                showToast('SUCCESS', {message: 'Item has been added to cart'});
+              }
+            }}
+          />
         </View>
       }>
       <View style={{gap: wp(8)}}>
-        <View
-          style={{
-            width: '100%',
-            height: SCREEN_WIDTH - SCREEN_HORIZONTAL_SPACE * 2,
-            borderRadius: wp(15),
-            overflow: 'hidden',
-          }}>
-          <Image
-            source={product?.image}
-            style={{width: '100%', height: '100%'}}
-          />
-          <TouchableOpacity
-            style={{
-              position: 'absolute',
-              width: wp(44),
-              height: wp(44),
-              borderRadius: wp(22),
-              alignItems: 'center',
-              justifyContent: 'center',
-              right: 12,
-              top: 12,
-              backgroundColor: '#FFFFFF',
-            }}>
+        <View style={styles.imageContainer}>
+          <Image source={product?.image} style={styles.image} />
+          <TouchableOpacity style={styles.like}>
             <HeartIcon stroke={'black'} />
           </TouchableOpacity>
         </View>

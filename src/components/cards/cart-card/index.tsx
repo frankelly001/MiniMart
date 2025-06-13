@@ -1,16 +1,27 @@
+import {DeleteIcon, MinusIcon, PlusIcon} from '@/assets/svg';
 import {AppText} from '@/components/common';
-import {wp} from '@/resources/config';
 import React, {FunctionComponent} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {productCardStyles} from './styles';
-import {DeleteIcon, MinusIcon, PlusIcon} from '@/assets/svg';
+import {CartItem} from '@/providers/store/context';
 
-const CartCard: FunctionComponent<{
-  image?: number;
-  name?: string;
-  price?: number;
-  onPress?: () => void;
-}> = ({image, name = 'Action 3 Camera', onPress, price}) => {
+const CartCard: FunctionComponent<
+  CartItem & {
+    onPress?: () => void;
+    onIncreament?: () => void;
+    onDecreament?: () => void;
+    onRemove?: () => void;
+  }
+> = ({
+  image,
+  name = 'Action 3 Camera',
+  onPress,
+  quantity,
+  unitPrice,
+  onDecreament,
+  onIncreament,
+  onRemove,
+}) => {
   const styles = productCardStyles();
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -18,7 +29,7 @@ const CartCard: FunctionComponent<{
         <Image source={image} style={styles.image} />
       </View>
 
-      <View style={{gap: wp(5), flex: 1}}>
+      <View style={styles.detailContainer}>
         <AppText
           text={name}
           family="SFProText"
@@ -28,63 +39,48 @@ const CartCard: FunctionComponent<{
           numberOfLines={2}
         />
         <AppText
-          text={'$' + price?.toFixed(2)}
+          text={'$' + unitPrice?.toFixed(2)}
           family="SFProText"
           weight="SemiBold"
           lineHeight={32}
           size={16}
         />
         <AppText
-          text={'$' + price?.toFixed(2)}
+          text={'In stock'}
           family="SFProText"
           weight="Regular"
           size={12}
           color="#10B981"
         />
 
-        <View style={{flexDirection: 'row', alignItems: 'center', gap: wp(32)}}>
-          <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+        <View style={styles.actionContainer}>
+          <View style={styles.plusMinusContainer}>
             <TouchableOpacity
-              style={{
-                width: wp(36),
-                height: wp(36),
-                borderRadius: wp(18),
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#ffffff',
-              }}>
+              style={[
+                styles.actionBtn, // eslint-disable-next-line react-native/no-inline-styles
+                {backgroundColor: quantity > 1 ? '#ffffff' : '#E2E8F0'},
+              ]}
+              onPress={onDecreament}>
               <MinusIcon />
             </TouchableOpacity>
-            <View style={{flex: 1}}>
+            <View
+              style={
+                // eslint-disable-next-line react-native/no-inline-styles
+                {flex: 1}
+              }>
               <AppText
-                text="1"
+                text={quantity}
                 size={12}
                 family="SFProText"
                 weight="Regular"
                 align="center"
               />
             </View>
-            <TouchableOpacity
-              style={{
-                width: wp(36),
-                height: wp(36),
-                borderRadius: wp(18),
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#ffffff',
-              }}>
+            <TouchableOpacity style={styles.actionBtn} onPress={onIncreament}>
               <PlusIcon />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={{
-              width: wp(36),
-              height: wp(36),
-              borderRadius: wp(18),
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ffffff',
-            }}>
+          <TouchableOpacity style={styles.actionBtn} onPress={onRemove}>
             <DeleteIcon />
           </TouchableOpacity>
         </View>

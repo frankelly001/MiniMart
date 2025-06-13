@@ -22,27 +22,27 @@ const AppTabButton: FunctionComponent<TabButtonProps> = ({
     indicatorColor: color,
   });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const animatedValue = new Animated.Value(0);
+  const animatedValue = new Animated.Value(0);
 
-  // useEffect(() => {
-  //   const ease = Animated.timing(animatedValue, {
-  //     toValue: isFocused ? 56 : 0,
-  //     duration: 1000,
-  //     easing: Easing.linear,
-  //     isInteraction: true,
-  //     useNativeDriver: false,
-  //   });
+  useEffect(() => {
+    const ease = Animated.timing(animatedValue, {
+      toValue: isFocused ? 56 : 0,
+      duration: 1000,
+      easing: Easing.linear,
+      isInteraction: true,
+      useNativeDriver: false,
+    });
 
-  //   ease.start();
+    ease.start();
 
-  //   // Clean up the animation when the component unmounts
-  //   return () => ease.stop();
-  // }, [isFocused, animatedValue]);
+    // Clean up the animation when the component unmounts
+    return () => ease.stop();
+  }, [isFocused, animatedValue]);
 
-  // const width = animatedValue.interpolate({
-  //   inputRange: [0, 56],
-  //   outputRange: [0, 56],
-  // });
+  const width = animatedValue.interpolate({
+    inputRange: [0, 56],
+    outputRange: [0, 56],
+  });
 
   return (
     <Pressable {...buttonProps} style={styles.container}>

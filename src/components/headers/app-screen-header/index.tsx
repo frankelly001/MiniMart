@@ -5,8 +5,7 @@ import {
   SearchIcon,
 } from '@/assets/svg';
 import {AppText} from '@/components/common';
-import {detectTouch, SCREEN_HORIZONTAL_SPACE, wp} from '@/resources/config';
-import {generateTypography} from '@/resources/fonts';
+import {detectTouch} from '@/resources/config';
 import {useNavigation} from '@react-navigation/native';
 import React, {FunctionComponent} from 'react';
 import {Pressable, TextInput, View} from 'react-native';
@@ -24,27 +23,16 @@ const AppScreenHeader: FunctionComponent<AppHeaderProps> = ({
 
   return (
     <>
-      <View
-        style={{
-          borderBottomWidth: 1,
-          borderColor: '#E2E8F0',
-          padding: SCREEN_HORIZONTAL_SPACE,
-        }}>
+      <View style={styles.container1}>
         <View
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             flexDirection: 'row',
           }}>
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'flex-start',
-            }}>
+          <View style={styles.left}>
             <LogoIcon />
           </View>
-          <View
-            style={{
-              flex: 3,
-            }}>
+          <View style={styles.middle}>
             <AppText
               text="DELIVERY ADDRESS"
               size={10}
@@ -53,19 +41,11 @@ const AppScreenHeader: FunctionComponent<AppHeaderProps> = ({
               lineHeight={28}
             />
           </View>
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'flex-end',
-            }}>
+          <View style={styles.right}>
             <NotificationIcon />
           </View>
         </View>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+        <View style={styles.container2}>
           <AppText
             text="Umuezike Road, Oyo State"
             size={12}
@@ -75,40 +55,17 @@ const AppScreenHeader: FunctionComponent<AppHeaderProps> = ({
         </View>
 
         {showInput && (
-          <Pressable
-            style={{
-              height: wp(36),
-              borderRadius: wp(5),
-              overflow: 'hidden',
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingHorizontal: wp(8),
-              marginTop: wp(8),
-              gap: wp(8),
-              borderWidth: 1,
-              borderColor: '#E2E8F0',
-            }}>
+          <Pressable style={styles.inputContainer}>
             <SearchIcon />
             <TextInput
-              style={{
-                flex: 1,
-                ...generateTypography({size: 14, weight: 'Regular'}),
-                color: 'black',
-              }}
+              style={styles.input}
               placeholder="Search..."
               placeholderTextColor={'#CBD5E1'}
             />
           </Pressable>
         )}
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: wp(8),
-
-          gap: wp(8),
-        }}>
+      <View style={styles.container3}>
         <Pressable
           onPress={
             onPressBack ??

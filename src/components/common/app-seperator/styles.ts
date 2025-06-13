@@ -4,7 +4,7 @@ import {BorderStylesTypes} from '@/types/styles';
 import {StyleSheet} from 'react-native';
 
 export const appSeperatorStyles = ({
-  color = 'neutral_light_6',
+  color,
   size = 0.6,
   isVertical = false,
   borderStyle = 'solid',

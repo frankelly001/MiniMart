@@ -1,6 +1,5 @@
 import {AppText} from '@/components/common';
 import {wp} from '@/resources/config';
-import {formatNumberToCurrency} from '@/utils/helpers';
 import React, {FunctionComponent} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {productCardStyles} from './styles';

@@ -14,7 +14,8 @@
       "@/state/*": ["src/state/*"],
       "@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"],
-      "@/mocks/*": ["src/mocks/*"]
+      "@/mocks/*": ["src/mocks/*"],
+      "@/providers/*": ["src/providers/*"]
     }
   },
   "extends": "@react-native/typescript-config/tsconfig.json",
