@@ -20,7 +20,7 @@ const FavouritesScreen: FunctionComponent<GeneralScreenProps<'FAVOURITES'>> = ({
     <AppScreen
       isScrollable={false}
       disableBottomSafeArea={false}
-      ScreenHeader={<AppScreenHeader title="Your Cart" />}
+      ScreenHeader={<AppScreenHeader title="Your Favourites" />}
       ScreenFooter={
         !cart.length ? undefined : (
           <View style={styles.footer}>
