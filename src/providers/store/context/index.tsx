@@ -21,15 +21,17 @@ export type StoreState = {
   decrementProductQuantity: (product: Omit<CartItem, 'quantity'>) => void;
   removeProductFromCart: (product: Omit<CartItem, 'quantity'>) => void;
   favoriteToggle: (product: FavoriteItem) => void;
+  clearAllFavorites: () => void;
 };
 
 const intialStoreState: StoreState = {
   cart: [],
   favourites: [],
-  incrementProductQuantity: () => {},
-  decrementProductQuantity: () => {},
-  removeProductFromCart: () => {},
-  favoriteToggle: () => {},
+  incrementProductQuantity: () => null,
+  decrementProductQuantity: () => null,
+  removeProductFromCart: () => null,
+  favoriteToggle: () => null,
+  clearAllFavorites: () => null,
 };
 
 export const StoreContext = React.createContext<StoreState>(intialStoreState);

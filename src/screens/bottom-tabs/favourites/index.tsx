@@ -14,7 +14,8 @@ const FavouritesScreen: FunctionComponent<GeneralScreenProps<'FAVOURITES'>> = ({
   navigation,
 }) => {
   const styles = cartScreenStyles();
-  const {favourites, favoriteToggle, cart} = useContext(StoreContext);
+  const {favourites, favoriteToggle, clearAllFavorites} =
+    useContext(StoreContext);
 
   return (
     <AppScreen
@@ -22,9 +23,9 @@ const FavouritesScreen: FunctionComponent<GeneralScreenProps<'FAVOURITES'>> = ({
       disableBottomSafeArea={false}
       ScreenHeader={<AppScreenHeader title="Your Favourites" />}
       ScreenFooter={
-        !cart.length ? undefined : (
+        !favourites.length ? undefined : (
           <View style={styles.footer}>
-            <AppButton text={'Clear all'} />
+            <AppButton text={'Clear all'} onPress={clearAllFavorites} />
           </View>
         )
       }>

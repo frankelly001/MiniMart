@@ -58,6 +58,7 @@ const StoreProvider: FunctionComponent<{children: ReactNode}> = ({
       }
     });
   };
+  const clearAllFavorites = () => setFavourites([]);
 
   return (
     <StoreContext.Provider
@@ -68,6 +69,7 @@ const StoreProvider: FunctionComponent<{children: ReactNode}> = ({
         decrementProductQuantity,
         removeProductFromCart,
         favoriteToggle,
+        clearAllFavorites,
       }}>
       {children}
     </StoreContext.Provider>

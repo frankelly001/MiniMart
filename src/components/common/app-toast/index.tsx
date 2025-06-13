@@ -38,7 +38,13 @@ const AppToastView: FunctionComponent<appToastViewProps> = ({
       <View style={styles.toast}>
         {type === 'SUCCESS' && <SuccessCheckIcon />}
         <View style={styles.contentContainer}>
-          <AppText text={message} color={'text400'} />
+          <AppText
+            text={message}
+            weight="SemiBold"
+            size={14}
+            color={'#334155'}
+            lineHeight={20}
+          />
         </View>
         <TouchableOpacity onPress={onHide} hitSlop={detectTouch}>
           <CloseIcon />
