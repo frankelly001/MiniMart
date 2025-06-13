@@ -1,0 +1,8 @@
+export const routesNames = {
+  BOTTOM_TAB: 'BOTTOM_TAB',
+  HOME: 'HOME',
+  CART: 'CART',
+  FAVOURITES: 'FAVOURITES',
+  PROFILE: 'PROFILE',
+  PRODUCT_DETAILS: 'PRODUCT_DETAILS',
+} as const;
