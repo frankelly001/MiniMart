@@ -1,10 +1,11 @@
 import React, {FunctionComponent, ReactNode, useState} from 'react';
-import {CartItem, StoreContext} from '../context';
+import {CartItem, FavoriteItem, StoreContext} from '../context';
 
 const StoreProvider: FunctionComponent<{children: ReactNode}> = ({
   children,
 }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [favourites, setFavourites] = useState<FavoriteItem[]>([]);
 
   const incrementProductQuantity = (product: Omit<CartItem, 'quantity'>) => {
     setCart(prevCart => {
@@ -34,10 +35,6 @@ const StoreProvider: FunctionComponent<{children: ReactNode}> = ({
         return prevCart;
       }
 
-      // if (existingItem.quantity === 1) {
-      //   return prevCart.filter(item => item.productId !== product.productId);
-      // }
-
       return prevCart.map(item =>
         item.productId === product.productId
           ? {...item, quantity: item.quantity - 1}
@@ -52,13 +49,25 @@ const StoreProvider: FunctionComponent<{children: ReactNode}> = ({
     );
   };
 
+  const favoriteToggle = (product: FavoriteItem) => {
+    setFavourites(fav => {
+      if (fav.some(el => el.productId === product.productId)) {
+        return fav.filter(el => el.productId !== product.productId);
+      } else {
+        return [product, ...fav];
+      }
+    });
+  };
+
   return (
     <StoreContext.Provider
       value={{
         cart,
+        favourites,
         incrementProductQuantity,
         decrementProductQuantity,
         removeProductFromCart,
+        favoriteToggle,
       }}>
       {children}
     </StoreContext.Provider>

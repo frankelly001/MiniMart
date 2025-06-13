@@ -1,4 +1,5 @@
 import HomeScreen from './home';
 import CartScreen from './cart';
+import FavouritesScreen from './favourites';
 
-export {HomeScreen, CartScreen};
+export {HomeScreen, CartScreen, FavouritesScreen};

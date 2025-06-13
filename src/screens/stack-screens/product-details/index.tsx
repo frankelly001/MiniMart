@@ -18,7 +18,10 @@ const ProductDetailsScreen: FunctionComponent<
   const productId = route.params?.productId;
   const product = products.find(el => el.id === productId);
   const styles = productDetailsScreenStyles();
-  const {incrementProductQuantity} = useContext(StoreContext);
+  const {incrementProductQuantity, favoriteToggle, favourites} =
+    useContext(StoreContext);
+
+  const isLiked = favourites?.some(el => el?.productId === product?.id);
 
   return (
     <AppScreen
@@ -47,8 +50,24 @@ const ProductDetailsScreen: FunctionComponent<
       <View style={{gap: wp(8)}}>
         <View style={styles.imageContainer}>
           <Image source={product?.image} style={styles.image} />
-          <TouchableOpacity style={styles.like}>
-            <HeartIcon stroke={'black'} />
+          <TouchableOpacity
+            style={styles.like}
+            onPress={() => {
+              if (product) {
+                favoriteToggle({
+                  image: product?.image,
+                  name: product?.name,
+                  price: product?.price,
+                  productId: product?.id,
+                });
+                showToast('SUCCESS', {
+                  message: `Item has been ${
+                    isLiked ? 'removed from' : 'added to'
+                  } favourites`,
+                });
+              }
+            }}>
+            <HeartIcon stroke={isLiked ? '#60B5FF' : 'black'} />
           </TouchableOpacity>
         </View>
         <AppText text={product?.name} size={17} weight="Regular" />

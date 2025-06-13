@@ -51,8 +51,8 @@ const CartScreen: FunctionComponent<GeneralScreenProps<'CART'>> = ({
                 },
                 {label: 'Shipping', value: '$10'},
                 {label: 'Total', value: '$' + (total + 10), isTotal: true},
-              ].map(el => (
-                <View style={styles.summary}>
+              ].map((el, i) => (
+                <View key={i} style={styles.summary}>
                   <AppText text={el.label} weight="Medium" size={12} />
                   <AppText
                     text={el.value}

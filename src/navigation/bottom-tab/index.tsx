@@ -2,7 +2,7 @@
 import {CartIcon, HeartIcon, HomeIcon, PersonIcon} from '@/assets/svg';
 import AppTabButton from '@/components/buttons/app-bottom-tab';
 import {AppText} from '@/components/common';
-import {CartScreen, HomeScreen} from '@/screens/bottom-tabs';
+import {CartScreen, FavouritesScreen, HomeScreen} from '@/screens/bottom-tabs';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {FunctionComponent, useContext} from 'react';
 import {View} from 'react-native';
@@ -61,7 +61,7 @@ const BottomTab: FunctionComponent = () => {
       />
       <Screen
         name={routesNames.FAVOURITES}
-        component={View}
+        component={FavouritesScreen}
         options={{
           tabBarButton: props => (
             <AppTabButton

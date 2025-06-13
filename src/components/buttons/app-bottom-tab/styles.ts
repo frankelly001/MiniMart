@@ -11,14 +11,13 @@ export const bottomTabStyles = ({
       justifyContent: 'center',
       flex: 1,
       gap: wp(4),
-      // backgroundColor: 'red',
     },
     indicatorContainer: {
       height: wp(32),
       width: wp(56),
       borderRadius: wp(16),
       backgroundColor: indicatorColor,
-      // flex: 1,
+
       alignItems: 'center',
       justifyContent: 'center',
     },
