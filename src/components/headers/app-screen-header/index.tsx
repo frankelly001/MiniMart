@@ -14,7 +14,7 @@ import {AppHeaderProps} from './type';
 
 const AppScreenHeader: FunctionComponent<AppHeaderProps> = ({
   onPressBack,
-  showInput,
+  search,
   title,
 }) => {
   const navigation = useNavigation();
@@ -54,10 +54,12 @@ const AppScreenHeader: FunctionComponent<AppHeaderProps> = ({
           />
         </View>
 
-        {showInput && (
+        {search && (
           <Pressable style={styles.inputContainer}>
             <SearchIcon />
             <TextInput
+              value={search.value}
+              onChangeText={search.setValue}
               style={styles.input}
               placeholder="Search..."
               placeholderTextColor={'#CBD5E1'}

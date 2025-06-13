@@ -17,7 +17,7 @@ export const bottomTabStyles = () =>
     },
     tabBar: {
       paddingHorizontal: 0,
-      height: wp(82),
-      paddingTop: wp(14),
+      height: wp(90),
+      paddingBottom: wp(20),
     },
   });

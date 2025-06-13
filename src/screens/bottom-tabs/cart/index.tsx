@@ -65,7 +65,7 @@ const CartScreen: FunctionComponent<GeneralScreenProps<'CART'>> = ({
           )
         }
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{gap: wp(16)}}
+        contentContainerStyle={{gap: wp(16), paddingBottom: wp(20)}}
         keyExtractor={item => item.productId}
         renderItem={({item}) => (
           <CartCard
