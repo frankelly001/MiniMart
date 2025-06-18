@@ -41,6 +41,7 @@ const AppToastView: FunctionComponent<appToastViewProps> = ({
           <AppText
             text={message}
             weight="SemiBold"
+            family="SFProText"
             size={14}
             color={'#334155'}
             lineHeight={20}
